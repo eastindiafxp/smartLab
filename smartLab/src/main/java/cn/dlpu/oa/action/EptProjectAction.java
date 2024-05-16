@@ -705,7 +705,6 @@ public class EptProjectAction extends BaseAction<Project> {
 	public String editRecordPage() {
 		//当前登录用户
 		User loginUser = PubFun.getLoginUser();
-		experiment = experimentService.findById(experimentId);
 		//实验下拉列表框的列表项
 		experimentList = experimentService.findByProjId(experiment.getProject().getId());
 		if (PubFun.isAdmin(loginUser)) {
@@ -792,9 +791,7 @@ public class EptProjectAction extends BaseAction<Project> {
 	 * @return
 	 */
 	@Action(value = "saveOrUpdateRecord",results = {
-			@Result(name = SUCCESS,location = "/page/eptProject/editRecordSuccess.jsp"),
-//			@Result(name = SUCCESS, type = "chain", location = "findRecordList"),
-			@Result(name = ERROR,location = "/page/publicPage/Failure.jsp")
+			@Result(name = SUCCESS,location = "/page/eptProject/editSuccess.jsp"),
 	})
 	public String saveOrUpdateRecord() {
 
@@ -862,7 +859,6 @@ public class EptProjectAction extends BaseAction<Project> {
 				//为实验操作者列表赋值，页面已进行过非空校验
 				List<User> operaters = userService.findByIds(operaterIdList);
 				record2.setOperaters(new HashSet<User>(operaters));
-				record2.setProcess(record.getProcess());
 				record2.setReverse(record.getReverse());
 				recordService.update(record2);
 			} catch (Exception e) {
@@ -904,18 +900,8 @@ public class EptProjectAction extends BaseAction<Project> {
 	public String deleteRecordById() {
 
 		try {
-			Record record = recordService.findById(recordId);
-
-//			用于页面回显start
-			project5 = record.getExperiment().getProject();
-			projectId = project5.getId();
-			experimentId = record.getExperiment().getId();
-
-
-//			用于页面回显end
-
 			//删除记录之前先删除其与实验的级联关系
-//			Record record = recordService.findById(recordId);
+			Record record = recordService.findById(recordId);
 			record.getExperiment().getRecords().remove(record);
 			record.setExperiment(null);
 
@@ -926,14 +912,8 @@ public class EptProjectAction extends BaseAction<Project> {
 				}
 			}
 			record.setSpecimens(null);
+
 			recordService.deleteById(recordId);
-
-			HQLHelper hh = new HQLHelper(Record.class, 1);
-			hh.buildWhere("experiment.id", PubFun.AND, experimentId);
-			pageNo = PubFun.DEFAULT_PAGE_NO;
-			page = recordService.getPage(hh, pageNo, isNew);
-			recordList = page.getResultList();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			exceptionMessage.setClassName(this.getClass().getName());

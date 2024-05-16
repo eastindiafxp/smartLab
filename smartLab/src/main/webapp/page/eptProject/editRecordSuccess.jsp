@@ -23,7 +23,6 @@
 <body>
 	<form action="" name="fm" method="POST">
 		<input type="hidden" name="pageNo" value="${pageNo }">
-		<input type="hidden" name="experimentId" value="${experimentId }">
 		<table class="button" cellspacing="0" cellpadding="5">
 			<tr>
 				<td class="title0">信息提示</td>
