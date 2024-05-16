@@ -45,7 +45,7 @@
 <!--显示表单内容-->
 <div id=MainArea>
     <form action="setPrivilege.action" method="post">
-    	<input type="hidden" name="${role.id }">
+    	<input type="hidden" name="roleId" value="${role.id }">
         <div class="ItemBlock_Title1"><!-- 信息说明 --><div class="ItemBlock_Title1">
         	<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/blue/images/item_point.gif" /> 正在为【${role.name }】配置权限 </div> 
         </div>

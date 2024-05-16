@@ -43,16 +43,14 @@ public class SessionListener implements HttpSessionListener {
 			day = 0;
 		}
 		session.setAttribute("day", day);*/
-		System.out.println("------------------------------------------------------------------------------");
-		System.out.println("session被创建。");
+		System.out.println("-----------------------session被创建-----------------------");
 		
 	}
 
 	@Override
 	public void sessionDestroyed(HttpSessionEvent httpsessionevent) {
 		
-		System.out.println("===========================================");
-		System.out.println("session被销毁。");
+		System.out.println("=======================session被销毁========================");
 		
 	}
 

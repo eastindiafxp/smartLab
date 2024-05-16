@@ -39,6 +39,7 @@ public class RoleAction extends BaseAction<Role> {
 	private List<Role> roleList = null;
 	/** 根据id查询到的岗位详细信息或修改页面传递过来的岗位信息 */
 	private Role role = null;
+	private Integer roleId = null;
 	/** 传给页面的权限列表 */
 	List<Privilege> privilegeList = new ArrayList<Privilege>();
 	/** 接收页面传回的权限id列表或者传给页面回显的权限id列表 */
@@ -204,19 +205,24 @@ public class RoleAction extends BaseAction<Role> {
 	 */
 	@Action(value = "setPrivilege",results = {
 			@Result(name = SUCCESS,location = "/page/role/privilegePage.jsp"),
+//			@Result(name = SUCCESS,type = "chain", location = "medicineManagePage"),
 			@Result(name = ERROR,location = "/page/publicPage/Failure.jsp")
 	})
 	public String setPrivilege() {
 		
-		Role role2 = roleService.findById(role.getId());
+//		Role role2 = roleService.findById(role.getId());
+		Role role2 = roleService.findById(roleId);
 		try {
 			if (privilegeIds != null && privilegeIds.length != 0) {
-				List<Privilege> privilegeList = privilegeService.findByIds(privilegeIds);
-				role2.setPrivileges(new HashSet<Privilege>(privilegeList));
+				List<Privilege> privilegeList2 = privilegeService.findByIds(privilegeIds);
+//				privilegeList = privilegeService.findByIds(privilegeIds);
+				role2.setPrivileges(new HashSet<Privilege>(privilegeList2));
 			} else {
 				role2.setPrivileges(null);
 			}
 			roleService.update(role2);
+			role = role2;
+			privilegeList = privilegeService.findTopPri();
 			return SUCCESS;
 		} catch (Exception e) {
 			e.printStackTrace();

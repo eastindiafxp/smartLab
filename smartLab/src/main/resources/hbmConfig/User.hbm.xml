@@ -34,7 +34,7 @@
         <property name="password" type="string">
             <column name="password" length="16" not-null="true" />
         </property>
-        <set name="roles" inverse="false" table="role_user" lazy="true">
+        <set name="roles" inverse="false" table="role_user" lazy="false">
             <key>
                 <column name="userId" not-null="true" unique="true" />
             </key>

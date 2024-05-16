@@ -26,11 +26,14 @@ public class SessionTimeoutFilter implements Filter {
             // 检查session中是否有用户信息
             if (httpRequest.getSession().getAttribute(LOGIN_USER) == null) {
                 // 如果没有用户信息，可以判断为会话超时
-                httpResponse.sendRedirect("user/loginPage.jsp"); // 重定向到登录页面
+                httpResponse.sendRedirect("/page/user/loginPage.jsp"); // 重定向到登录页面
+//                httpResponse.sendRedirect("user/loginPage.jsp"); // 重定向到登录页面
             } else {
                 // 如果有用户信息，继续请求处理
                 chain.doFilter(request, response);
             }
+        } else {
+            httpResponse.sendRedirect("smartLab/page/user/loginPage.jsp"); // 重定向到登录页面
         }
 
     }

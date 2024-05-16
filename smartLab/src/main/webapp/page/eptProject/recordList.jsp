@@ -62,7 +62,7 @@
     	
     	//查看被镀材料详细信息
     	function viewSubstrateDetail(medicineId){
-    		var url = "${pageContext.request.contextPath}/medicine/viewMedicineDetail?medicineId=" + medicineId;
+    		var url = "${pageContext.request.contextPath}/medicine/viewMedicineDetail2?medicineId=" + medicineId;
 			// var newWindow = window.showModalDialog(url,window,"dialogWidth:600px;dialogHeight:400px;status:no;edge:sunken");
 			var newWindow = window.open(url,"被镀材料详情","dialogWidth:400px;dialogHeight:300px;status:no;edge:sunken");
     	}
