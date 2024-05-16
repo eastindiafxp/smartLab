@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop.xsd
+						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx/spring-tx.xsd">
+						
+	<!-- 读取属性文件 -->
+	<context:property-placeholder location="classpath:jdbc.properties" />
+						
+	<!-- 数据源 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" >
+	    <property name="driverClass" value="${driverClass}"></property>
+	    <property name="jdbcUrl" value="${jdbcUrl}"></property>
+	    <property name="user" value="${user}"></property>
+	    <property name="password" value="${password}"></property>
+	    <property name="initialPoolSize" value="${initialPoolSize}"></property>
+	    <property name="minPoolSize" value="${minPoolSize}"></property>
+	    <property name="maxPoolSize" value="${maxPoolSize}"></property>
+	</bean>
+    
+	<!-- 本地会话工厂bean-->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean" >
+	<property name="dataSource" ref="dataSource" ></property>
+	<!-- 注入hibernate属性 -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+				<prop key="hibernate.hbm2dd1.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+			</props>
+		</property>
+	    <!-- hibernate映射文件位置 -->
+	    <property name="mappingDirectoryLocations">
+	    	<list>
+<!--	        	<value>classpath:cn/dlpu/oa/domain</value>-->
+<!--	        	<value>classpath:struts/</value>-->
+	        	<value>classpath:hbmConfig/</value>
+	        </list>
+	    </property>
+<!-- 	    加载jbpm的jar包中的映射文件
+	    <property name="mappingJarLocations">
+	    	<list>
+	    		<value>/lib/jbpm.jar</value>
+	    	</list>
+	    </property>
+ -->	</bean>
+	    
+	<!-- hibernate事物管理器 -->
+	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 配置jbpm和spring框架整合的核心类 -->
+	<!-- <bean id="springHelper" class="org.jbpm.pvm.internal.processengine.SpringHelper">
+		指定jbpm的核心配置文件
+		<property name="jbpmCfg" value="jbpm.cfg.xml"></property>
+	</bean> -->
+	<!-- 配置ProcessEngine对象 -->
+	<!-- <bean id="processEngine" factory-bean="springHelper" factory-method="createProcessEngine"></bean> -->
+	
+	<!-- 对注解提供支持 -->
+	<context:annotation-config/>
+
+
+    <!-- 组件扫描,采用注解方式时需添加此句 -->
+	<context:component-scan base-package="cn.dlpu.oa"></context:component-scan>
+
+
+	<!-- 注解驱动 -->
+	<tx:annotation-driven transaction-manager="txManager" />
+
+	
+	<bean id="roleAction" class="cn.dlpu.oa.action.RoleAction">
+	    <property name="roleService" ref="roleService"></property>
+	    <property name="privilegeService" ref="privilegeService"></property>
+	</bean>
+	<bean id="departmentAction" class="cn.dlpu.oa.action.DepartmentAction">
+	    <property name="departmentService" ref="departmentService"></property>
+	</bean>
+	<bean id="userAction" class="cn.dlpu.oa.action.UserAction">
+	    <property name="userService" ref="userService"></property>
+	    <property name="departmentService" ref="departmentService"></property>
+	    <property name="roleService" ref="roleService"></property>
+	</bean>
+	<bean id="mainAction" class="cn.dlpu.oa.action.MainAction">
+	</bean>
+	<bean id="forumManageAction" class="cn.dlpu.oa.action.ForumManageAction">
+		<property name="forumManageService" ref="forumManageService"></property>
+	</bean>
+	<bean id="forumAction" class="cn.dlpu.oa.action.ForumAction">
+		<property name="forumService" ref="forumService"></property>
+		<property name="topicService" ref="topicService"></property>
+	</bean>
+	<bean id="topicAction" class="cn.dlpu.oa.action.TopicActioin">
+		<property name="forumService" ref="forumService"></property>
+		<property name="topicService" ref="topicService"></property>
+	</bean>
+	<bean id="replyAction" class="cn.dlpu.oa.action.ReplyAction">
+		<property name="forumService" ref="forumService"></property>
+		<property name="topicService" ref="topicService"></property>
+		<property name="replyService" ref="replyService"></property>
+	</bean>
+	<!-- <bean id="proDefAction" class="cn.dlpu.oa.action.ProcessDefinitionAction">
+		<property name="proDefService" ref="proDefService"></property>
+	</bean> -->
+	<!-- <bean id="templateAction" class="cn.dlpu.oa.action.TemplateAction">
+		<property name="templateService" ref="templateService"></property>
+		<property name="proDefService" ref="proDefService"></property>
+	</bean> -->
+	<bean id="setAction" class="cn.dlpu.oa.action.SetAction">
+		<property name="sysConfigService" ref="sysConfigService"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="departmentService" ref="departmentService"></property>
+		<property name="roleService" ref="roleService"></property>
+	</bean>
+	<bean id="eptProjectAction" class="cn.dlpu.oa.action.EptProjectAction">
+	    <property name="projectService" ref="projectService"></property>
+	    <property name="userService" ref="userService"></property>
+	    <property name="experimentService" ref="experimentService"></property>
+	    <property name="recordService" ref="recordService"></property>
+	    <property name="medicineService" ref="medicineService"></property>
+	    <property name="specimenService" ref="specimenService"></property>
+	    <property name="solutionService" ref="solutionService"></property>
+	</bean>
+	<bean id="medicineAction" class="cn.dlpu.oa.action.MedicineAction">
+	    <property name="medicineService" ref="medicineService"></property>
+	    <property name="experimentService" ref="experimentService"></property>
+	    <property name="projectService" ref="projectService"></property>
+	</bean>
+	<bean id="solutionAction" class="cn.dlpu.oa.action.SolutionAction">
+	    <property name="solutionService" ref="solutionService"></property>
+	    <property name="medicineService" ref="medicineService"></property>
+	    <property name="experimentService" ref="experimentService"></property>
+	    <property name="projectService" ref="projectService"></property>
+	</bean>
+	<bean id="specimenAction" class="cn.dlpu.oa.action.SpecimenAction">
+	    <property name="specimenService" ref="specimenService"></property>
+	    <property name="recordService" ref="recordService"></property>
+	    <property name="experimentService" ref="experimentService"></property>
+	    <property name="projectService" ref="projectService"></property>
+	</bean>
+	<bean id="testAction" class="cn.dlpu.oa.action.TestAction">
+	    <property name="testService" ref="testService"></property>
+	    <property name="specimenService" ref="specimenService"></property>
+	</bean>
+	<bean id="summaryAction" class="cn.dlpu.oa.action.SummaryAction">
+	    <property name="summaryService" ref="summaryService"></property>
+	    <property name="userService" ref="userService"></property>
+	</bean>
+<!--	<bean id="specimenExcelAction" class="cn.dlpu.oa.action.excel.SpecimenExcelAction">-->
+<!--	    <property name="specimenService" ref="specimenService"></property>-->
+<!--	</bean>-->
+<!--	<bean id="solutionExcelAction" class="cn.dlpu.oa.action.excel.SolutionExcelAction">-->
+<!--	    <property name="solutionService" ref="solutionService"></property>-->
+<!--	</bean>-->
+<!--	<bean id="medicineExcelAction" class="cn.dlpu.oa.action.excel.MedicineExcelAction">-->
+<!--	    <property name="medicineService" ref="medicineService"></property>-->
+<!--	</bean>-->
+<!--	<bean id="recordExcelAction" class="cn.dlpu.oa.action.excel.RecordExcelAction">-->
+<!--	    <property name="recordService" ref="recordService"></property>-->
+<!--	</bean>-->
+<!--	<bean id="testExcelAction" class="cn.dlpu.oa.action.excel.TestExcelAction">-->
+<!--	    <property name="testService" ref="testService"></property>-->
+<!--	</bean>-->
+<!--	<bean id="summaryExcelAction" class="cn.dlpu.oa.action.excel.SummaryExcelAction">-->
+<!--	    <property name="summaryService" ref="summaryService"></property>-->
+<!--	</bean>-->
+</beans>
+
+
+
+
+
+
+
+
+
+
+

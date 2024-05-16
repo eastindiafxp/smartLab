@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop.xsd
+						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx/spring-tx.xsd">
+						
+	<bean id="roleDao" class="cn.dlpu.oa.dao.impl.RoleDaoImpl"></bean>
+	<bean id="departmentDao" class="cn.dlpu.oa.dao.impl.DepartmentDaoImpl"></bean>
+	<bean id="userDao" class="cn.dlpu.oa.dao.impl.UserDaoImpl"></bean>
+	<bean id="privilegeDao" class="cn.dlpu.oa.dao.impl.PrivilegeDaoImpl"></bean>
+	<bean id="forumManageDao" class="cn.dlpu.oa.dao.impl.ForumManageDaoImpl"></bean>
+	<bean id="forumDao" class="cn.dlpu.oa.dao.impl.ForumDaoImpl"></bean>
+	<bean id="topicDao" class="cn.dlpu.oa.dao.impl.TopicDaoImpl"></bean>
+	<bean id="replyDao" class="cn.dlpu.oa.dao.impl.ReplyDaoImpl"></bean>
+	<!-- <bean id="templateDao" class="cn.dlpu.oa.dao.impl.TemplateDaoImpl"></bean> -->
+	<bean id="sysConfigDao" class="cn.dlpu.oa.dao.impl.SysConfigDaoImpl"></bean>
+	<bean id="projectDao" class="cn.dlpu.oa.dao.impl.ProjectDaoImpl"></bean>
+	<bean id="experimentDao" class="cn.dlpu.oa.dao.impl.ExperimentDaoImpl"></bean>
+	<bean id="recordDao" class="cn.dlpu.oa.dao.impl.RecordDaoImpl"></bean>
+	<bean id="medicineDao" class="cn.dlpu.oa.dao.impl.MedicineDaoImpl"></bean>
+	<bean id="specimenDao" class="cn.dlpu.oa.dao.impl.SpecimenDaoImpl"></bean>
+	<bean id="solutionDao" class="cn.dlpu.oa.dao.impl.SolutionDaoImpl"></bean>
+	<bean id="summaryDao" class="cn.dlpu.oa.dao.impl.SummaryDaoImpl"></bean>
+	<bean id="testDao" class="cn.dlpu.oa.dao.impl.TestDaoImpl"></bean>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop.xsd
+						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx/spring-tx.xsd">
+						
+	<bean id="roleService" class="cn.dlpu.oa.service.impl.RoleServiceImpl">
+	    <property name="roleDao" ref="roleDao"></property>
+	</bean>
+	<bean id="departmentService" class="cn.dlpu.oa.service.impl.DepartmentServiceImpl">
+	    <property name="departmentDao" ref="departmentDao"></property>
+	</bean>
+	<bean id="userService" class="cn.dlpu.oa.service.impl.UserServiceImpl">
+	    <property name="userDao" ref="userDao"></property>
+	</bean>
+	<bean id="privilegeService" class="cn.dlpu.oa.service.impl.PrivilegeServiceImpl">
+	    <property name="privilegeDao" ref="privilegeDao"></property>
+	</bean>
+	<bean id="forumManageService" class="cn.dlpu.oa.service.impl.ForumManageServiceImpl">
+		<property name="forumManageDao" ref="forumManageDao"></property>
+	</bean>
+	<bean id="forumService" class="cn.dlpu.oa.service.impl.ForumServiceImpl">
+		<property name="forumDao" ref="forumDao"></property>
+	</bean>
+	<bean id="topicService" class="cn.dlpu.oa.service.impl.TopicServiceImpl">
+		<property name="topicDao" ref="topicDao"></property>
+	</bean>
+	<bean id="replyService" class="cn.dlpu.oa.service.impl.ReplyServiceImpl">
+		<property name="replyDao" ref="replyDao"></property>
+	</bean>
+	<!-- <bean id="proDefService" class="cn.dlpu.oa.service.impl.ProcessDefinitionServiceImpl">
+		<property name="processEngine" ref="processEngine"></property>
+	</bean> -->
+	<!-- <bean id="templateService" class="cn.dlpu.oa.service.impl.TemplateServiceImpl">
+		<property name="templateDao" ref="templateDao"></property>
+	</bean> -->
+	<bean id="sysConfigService" class="cn.dlpu.oa.service.impl.SysConfigServiceImpl">
+		<property name="sysConfigDao" ref="sysConfigDao"></property>
+	</bean>
+	<bean id="projectService" class="cn.dlpu.oa.service.impl.ProjectServiceImpl">
+	    <property name="projectDao" ref="projectDao"></property>
+	</bean>
+	<bean id="experimentService" class="cn.dlpu.oa.service.impl.ExperimentServiceImpl">
+	    <property name="experimentDao" ref="experimentDao"></property>
+	</bean>
+	<bean id="recordService" class="cn.dlpu.oa.service.impl.RecordServiceImpl">
+	    <property name="recordDao" ref="recordDao"></property>
+	</bean>
+	<bean id="medicineService" class="cn.dlpu.oa.service.impl.MedicineServiceImpl">
+	    <property name="medicineDao" ref="medicineDao"></property>
+	</bean>
+	<bean id="specimenService" class="cn.dlpu.oa.service.impl.SpecimenServiceImpl">
+	    <property name="specimenDao" ref="specimenDao"></property>
+	</bean>
+	<bean id="solutionService" class="cn.dlpu.oa.service.impl.SolutionServiceImpl">
+	    <property name="solutionDao" ref="solutionDao"></property>
+	</bean>
+	<bean id="summaryService" class="cn.dlpu.oa.service.impl.SummaryServiceImpl">
+	    <property name="summaryDao" ref="summaryDao"></property>
+	</bean>
+	<bean id="testService" class="cn.dlpu.oa.service.impl.TestServiceImpl">
+	    <property name="testDao" ref="testDao"></property>
+	</bean>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

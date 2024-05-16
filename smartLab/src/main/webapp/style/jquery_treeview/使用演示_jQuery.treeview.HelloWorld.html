@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+		<!-- 1，引入js文件与css文件 -->
+		<script type="text/javascript" src="lib/jquery.js"></script>
+		<script type="text/javascript" src="jquery.treeview.js"></script>
+		<link rel="stylesheet" type="text/css" href="jquery.treeview.css">
+	</head>
+	<body>
+
+		<!-- 2，使用ul与li显示出数据 -->
+		<ul id="tree" class="filetree">
+			<li><span class="folder">系统管理</span>
+				<ul>
+					<li><input type="checkbox">岗位管理
+						<ul>
+							<li>岗位添加</li>
+							<li>岗位删除</li>
+						</ul>
+					</li>
+					<li>部门管理</li>
+					<li>用户管理</li>
+				</ul>
+			</li>
+			
+			<li>网上交流</li>
+		</ul>
+
+		<!-- 3，指定某ul显示为树状 -->
+		<script type="text/javascript">
+			$("#tree").treeview();
+		</script>
+
+
+	</body>
+</html>

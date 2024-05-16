@@ -1,0 +1,47 @@
+@CHARSET "UTF-8";
+/*-------------------------------------------------------------------------*/
+/* 樊晓璞 2016-10-07 v1.0 */
+/* 查询页面的选择条件样式 */
+/*-------------------------------------------------------------------------*/
+table.common A:link    {	color: #3e9431;	text-decoration: none}
+table.common A:visited {	color: #3e9431;	text-decoration: none}
+table.common A:active  {	color: #3e9431;	text-decoration: none}
+table.common A:hover   {	color: #FF0000;	text-decoration: blink}
+
+table.common td{border: 1px #cccccc solid;}
+
+tr.common {
+	background-color: #ffffff;
+	color: #333333;
+	text-align: center;
+	}
+	
+tr.common A:link    {	color: #3e9431;	text-decoration: none}
+tr.common A:visited {	color: #3e9431;	text-decoration: none}
+tr.common A:active  {	color: #3e9431;	text-decoration: none}
+tr.common A:hover   {	color: #FF0000;	text-decoration: blink}
+
+input.text   { 
+	height:21px;
+    border:1px solid #b5cab4;
+    width:70%
+}
+
+td.title { background-color: #fbfff1;
+           text-align: right;
+           width: 20%;
+           color: #642100;
+           white-space: nowrap;}
+
+td.input {
+	 width: 30%;
+}
+
+select.one{
+            border:1px solid #b5cab4;
+			border-color: #b5cab4; 
+			height:25px;
+			width:70%;
+			}
+
+

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-9-22 21:15:50 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cn.dlpu.oa.domain.SoluMedi" table="solu_medi" catalog="dlpu_oa">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="solutionId" type="int">
+            <column name="solutionId" not-null="true" unique="true">
+                <comment>&#203;&#249;&#202;&#244;&#200;&#220;&#210;&#186;&#181;&#196;id</comment>
+            </column>
+        </property>
+        <property name="medicineId" type="int">
+            <column name="medicineId" not-null="true" unique="true">
+                <comment>&#203;&#249;&#202;&#244;&#210;&#169;&#198;&#183;&#181;&#196;id</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-9-22 21:15:50 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cn.dlpu.oa.domain.Solution" table="solution" catalog="dlpu_oa">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="30" not-null="true">
+                <comment>&#200;&#220;&#210;&#186;&#195;&#251;&#179;&#198;</comment>
+            </column>
+        </property>
+        <property name="solvent" type="string">
+            <column name="solvent" length="20" not-null="true">
+                <comment>&#200;&#220;&#188;&#193;</comment>
+            </column>
+        </property>
+        <property name="dosage" type="string">
+            <column name="dosage" length="20" not-null="true">
+                <comment>&#181;&#165;&#180;&#206;&#202;&#185;&#211;&#195;&#181;&#196;&#188;&#193;&#193;&#191;</comment>
+            </column>
+        </property>
+        <property name="reverse" type="string">
+            <column name="reverse" length="1000">
+                <comment>&#177;&#184;&#215;&#162;</comment>
+            </column>
+        </property>
+        <set name="records" inverse="true" table="record_solution" lazy="false">
+            <key>
+                <column name="solutionId" not-null="true"></column>
+            </key>
+            <many-to-many class="cn.dlpu.oa.domain.Record" column="recordId"></many-to-many>
+        </set>
+        <set name="medicines" inverse="false" table="solu_medi" lazy="false" cascade="save-update">
+            <key>
+                <column name="solutionId" not-null="true"></column>
+            </key>
+            <many-to-many class="cn.dlpu.oa.domain.Medicine" column="medicineId"></many-to-many>
+        </set>
+        <many-to-one name="owner" class="cn.dlpu.oa.domain.User" fetch="select">
+            <column name="ownerId"></column>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

@@ -44,7 +44,7 @@ public class ForumAction extends BaseAction<Forum> {
 	 * 查询版块列表
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
+	
 	public String findForumList() {
 		forum = null;
 //		forumList = forumService.findForumList();
@@ -61,7 +61,7 @@ public class ForumAction extends BaseAction<Forum> {
 	 * 根据模块id查询相应的主题列表
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
+	
 	public String findTopicList() {
 		//用于页面回显的forum
 		forum =  forumService.findById(model.getId());//用属性驱动获取id不成功

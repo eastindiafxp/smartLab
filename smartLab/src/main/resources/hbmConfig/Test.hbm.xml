@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-12-5 13:06:18 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cn.dlpu.oa.domain.Test" table="test">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="label" type="string">
+            <column name="label" length="20">
+                <comment>&#203;&#205;&#188;&#236;&#177;&#234;&#199;&#169;</comment>
+            </column>
+        </property>
+<!--         <property name="specimenId" type="java.lang.Integer"> -->
+<!--             <column name="specimenId" unique="true"> -->
+<!--                 <comment>&#203;&#249;&#202;&#244;&#209;&#249;&#198;&#183;id</comment> -->
+<!--             </column> -->
+<!--         </property> -->
+        <many-to-one name="specimen" class="cn.dlpu.oa.domain.Specimen" fetch="select">
+            <column name="specimenId">
+                <comment>&#203;&#249;&#202;&#244;&#209;&#249;&#198;&#183;id</comment>
+            </column>
+        </many-to-one>
+        <property name="submitDate" type="date">
+            <column name="submitDate" length="19">
+                <comment>&#203;&#205;&#188;&#236;&#200;&#213;&#198;&#218;</comment>
+            </column>
+        </property>
+        <property name="testDate" type="date">
+            <column name="testDate" length="19">
+                <comment>&#188;&#236;&#178;&#226;&#200;&#213;&#198;&#218;</comment>
+            </column>
+        </property>
+        <property name="testMethod" type="string">
+            <column name="testMethod" length="20">
+                <comment>&#188;&#236;&#178;&#226;&#202;&#214;&#182;&#206;</comment>
+            </column>
+        </property>
+        <property name="testResult" type="string">
+            <column name="testResult" length="65535">
+                <comment>&#188;&#236;&#178;&#226;&#189;&#225;&#185;&#251;</comment>
+            </column>
+        </property>
+        <property name="reverse" type="string">
+            <column name="reverse" length="1000">
+                <comment>&#177;&#184;&#215;&#162;</comment>
+            </column>
+        </property>
+        <many-to-one name="owner" class="cn.dlpu.oa.domain.User" fetch="select">
+            <column name="ownerId"></column>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

@@ -30,7 +30,7 @@ public class ForumManageAction extends BaseAction<Forum> {
 	 * 查询论坛管理版块列表
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
+	
 	public String findForumManageList() {
 //		forumList = forumManageService.findAllForum();
 		HQLHelper hh = new HQLHelper(Forum.class);

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<constant name="struts.devMode" value="false"></constant>
+	
+	<!-- 将对象工厂指定为spring -->
+	<constant name="struts.objectFactory" value="spring"></constant>
+	
+	<!-- struts的Action访问后缀。struts1默认是“do”,struts2默认是“action”
+	<constant name="struts.action.extension" value="do"></constant> -->
+	
+	<package name="OA-default" extends="json-default" namespace="/">
+	    
+	    <!-- 声明自定义拦截器 -->
+	    <interceptors>
+	        <interceptor name="checkPrivilege" class="cn.dlpu.oa.interceptor.CheckPriInterceptor"></interceptor>
+	        <!-- 自定义拦截器栈 -->
+	        <interceptor-stack name="myInterceptor">
+	            <interceptor-ref name="checkPrivilege"></interceptor-ref>
+	            <interceptor-ref name="defaultStack"></interceptor-ref>
+	        </interceptor-stack>
+	    </interceptors>
+	    
+	    <!-- 指定默认拦截器栈 -->
+	    <default-interceptor-ref name="myInterceptor"></default-interceptor-ref>
+	    
+	    <!-- 设置全局的跳转页 -->
+	    <global-results>
+<!--	    	<result name="input" type="redirectAction">-->
+<!--	    		<param name="actionName">loginPage</param>-->
+<!--	            <param name="namespace">/user</param>-->
+<!--	    	</result>-->
+
+	    	<result name="loginPage">/page/user/loginPage.jsp</result>
+	    	<result name="login">/page/user/loginPage.jsp</result>
+	    	<result name="noPriPage">/page/publicPage/noPrivilege.jsp</result>
+	    </global-results>
+	</package>
+	
+<!--	<include file="struts/struts-system.xml"></include>-->
+<!--	<include file="struts/struts-main.xml"></include>-->
+<!--	<include file="struts/struts-forum.xml"></include>-->
+<!--	<include file="struts/struts-process.xml"></include>-->
+<!--	<include file="struts/struts-set.xml"></include>-->
+<!--	<include file="struts/struts-eptProject.xml"></include>-->
+
+</struts>
+

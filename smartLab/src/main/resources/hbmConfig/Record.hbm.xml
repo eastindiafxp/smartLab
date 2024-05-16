@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-9-22 21:15:50 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cn.dlpu.oa.domain.Record" table="record" catalog="dlpu_oa">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="recordNo" type="string">
+            <column name="recordNo" length="50" not-null="true">
+                <comment>&#188;&#199;&#194;&#188;&#177;&#224;&#186;&#197;</comment>
+            </column>
+        </property>
+        <property name="name" type="string">
+            <column name="name" length="30">
+                <comment>&#202;&#181;&#209;&#233;&#188;&#199;&#194;&#188;&#195;&#251;&#179;&#198;</comment>
+            </column>
+        </property>
+        <many-to-one name="experiment" class="cn.dlpu.oa.domain.Experiment" fetch="select">
+            <column name="eptId" not-null="true">
+                <comment>&#203;&#249;&#202;&#244;&#181;&#196;&#202;&#181;&#209;&#233;id</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="substrate" class="cn.dlpu.oa.domain.Medicine" fetch="select">
+            <column name="substrateId" not-null="true">
+                <comment>&#177;&#187;&#182;&#198;&#178;&#196;&#193;&#207;</comment>
+            </column>
+        </many-to-one>
+        <property name="substrateMass" type="string">
+            <column name="substrateMass" length="20" not-null="true">
+                <comment>&#177;&#187;&#182;&#198;&#178;&#196;&#193;&#207;&#211;&#195;&#193;&#191;</comment>
+            </column>
+        </property>
+        <property name="cladLayer" type="string">
+            <column name="cladLayer" length="20" not-null="true">
+                <comment>&#182;&#198;&#178;&#227;&#214;&#247;&#210;&#170;&#179;&#201;&#183;&#214;</comment>
+            </column>
+        </property>
+        <property name="ph" type="string">
+            <column name="pH" length="4" not-null="true">
+                <comment>&#203;&#225;&#188;&#238;&#182;&#200;</comment>
+            </column>
+        </property>
+        <property name="temperature" type="string">
+            <column name="temperature" length="10" not-null="true">
+                <comment>&#183;&#180;&#211;&#166;&#206;&#194;&#182;&#200;</comment>
+            </column>
+        </property>
+        <property name="reaTime" type="string">
+            <column name="reaTime" length="20" not-null="true">
+                <comment>&#183;&#180;&#211;&#166;&#186;&#196;&#202;&#177;</comment>
+            </column>
+        </property>
+        <property name="process" type="string">
+            <column name="process" length="1000">
+                <comment>&#178;&#217;&#215;&#247;&#185;&#253;&#179;&#204;</comment>
+            </column>
+        </property>
+        <property name="startDate" type="timestamp">
+            <column name="startDate" length="19" not-null="true">
+                <comment>&#178;&#217;&#215;&#247;&#191;&#170;&#202;&#188;&#200;&#213;&#198;&#218;</comment>
+            </column>
+        </property>
+        <property name="endDate" type="timestamp">
+            <column name="endDate" length="19">
+                <comment>&#178;&#217;&#215;&#247;&#189;&#225;&#202;&#248;&#200;&#213;&#198;&#218;</comment>
+            </column>
+        </property>
+        <property name="reverse" type="string">
+            <column name="reverse" length="1000">
+                <comment>&#177;&#184;&#215;&#162;</comment>
+            </column>
+        </property>
+        <set name="operaters" inverse="false" table="record_user" lazy="false">
+            <key>
+                <column name="recordId" not-null="true"></column>
+            </key>
+            <many-to-many class="cn.dlpu.oa.domain.User" column="userId"></many-to-many>
+        </set>
+        <set name="solutions" inverse="false" table="record_solution" lazy="false">
+            <key>
+                <column name="recordId" not-null="true"></column>
+            </key>
+            <many-to-many class="cn.dlpu.oa.domain.Solution" column="solutionId"></many-to-many>
+        </set>
+        <set name="specimens" inverse="false" cascade="save-update">
+            <key>
+                <column name="recordId" />
+            </key>
+            <one-to-many class="cn.dlpu.oa.domain.Specimen" />
+        </set>
+    </class>
+</hibernate-mapping>

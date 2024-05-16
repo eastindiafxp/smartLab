@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-9-22 21:15:50 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cn.dlpu.oa.domain.StageSummary" table="stage_summary" catalog="dlpu_oa">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="author" class="cn.dlpu.oa.domain.User" fetch="select">
+            <column name="authorId">
+                <comment>&#215;&#247;&#213;&#223;</comment>
+            </column>
+        </many-to-one>
+        <property name="summary1" type="string">
+            <column name="summary1" length="65535">
+                <comment>&#215;&#220;&#189;&#225;&#213;&#253;&#206;&#196;1</comment>
+            </column>
+        </property>
+        <property name="summary2" type="string">
+            <column name="summary2" length="65535">
+                <comment>&#215;&#220;&#189;&#225;&#213;&#253;&#206;&#196;2</comment>
+            </column>
+        </property>
+        <property name="summary3" type="string">
+            <column name="summary3" length="65535">
+                <comment>&#215;&#220;&#189;&#225;&#213;&#253;&#206;&#196;3</comment>
+            </column>
+        </property>
+        <property name="summaryDate" type="timestamp">
+            <column name="summaryDate" length="19">
+                <comment>&#215;&#220;&#189;&#225;&#191;&#170;&#202;&#188;&#200;&#213;&#198;&#218;</comment>
+            </column>
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="lastUpdateDate" length="19">
+                <comment>&#215;&#220;&#189;&#225;&#205;&#234;&#179;&#201;&#200;&#213;&#198;&#218;</comment>
+            </column>
+        </property>
+        <property name="reverse" type="string">
+            <column name="reverse" length="1000">
+                <comment>&#177;&#184;&#215;&#162;</comment>
+            </column>
+        </property>
+        <property name="title" type="string">
+            <column name="title" length="30"></column>
+        </property>
+    </class>
+</hibernate-mapping>
