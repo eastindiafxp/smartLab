@@ -74,7 +74,7 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 		try {
 			session.update(t);
 			tc.commit();
-//			session.flush();
+			session.flush();
 		} catch (Exception e) {
 			e.printStackTrace();
 			tc.rollback();
